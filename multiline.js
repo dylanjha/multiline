@@ -16,8 +16,11 @@
 		if (typeof fn !== 'function') {
 			throw new TypeError('Expected a function.');
 		}
-
-		return reCommentContents.exec(fn.toString())[1];
+		var match = reCommentContents.exec(fn.toString());
+		if(!match) {
+			throw new TypeError('Expected function to have a comment string.');
+		}
+		return match[1];
 	};
 
 	if (typeof module !== 'undefined' && module.exports) {
